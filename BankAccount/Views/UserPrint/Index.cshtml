@@ -1,0 +1,86 @@
+﻿@model BankAccount.Models.User
+
+@{
+    ViewBag.Title = "Index";
+    <link href="~/Content/Site.css" type="text/css" rel="stylesheet" />
+}
+<div class="col-md-12 navbar-left text-right">
+    <span class="btn btn-default">
+        @Html.ActionLink("Редактировать профиль", "Index", "AccountConfig", new { id = Model.Id }, null)
+    </span>
+
+        <span class="btn btn-default"> 
+    @Html.ActionLink("Выйти", "LogOff", "Account")
+        </span>
+</div>
+
+
+<div class="jumbotron">
+    <h2>@Html.DisplayFor(model => model.Name)</h2>
+    <h3>   Название аккаунта - @Model.Account.Name</h3>
+    <h3>Номер счета - @Model.Account.NumberAccount</h3>
+</div>
+
+<div class="row">
+    <div class="col-md-6 ">
+
+        <h3> @Html.DisplayNameFor(model => model.Phone) : @Html.DisplayFor(model => model.Phone)</h3>
+
+        <h3>@Html.DisplayNameFor(model => model.Address) : @Html.DisplayFor(model => model.Address)</h3>
+
+        <h3> @Html.DisplayNameFor(model => model.Email) : @Html.DisplayFor(model => model.Email)</h3>
+
+        <h3> @Html.DisplayNameFor(model => model.Passport) : @Html.DisplayFor(model => model.Passport)</h3>
+
+    </div>
+    <div class="col-md-6 text-right">
+        <h3> <span class="text-success"> @Html.DisplayFor(model => model.Account.Money) </span> : @Html.DisplayNameFor(model => model.Account.Money) </h3>
+        <h3><span class="text-danger"> @Html.DisplayFor(model => model.Account.Currency.Name) </span> : Валюта </h3>
+        
+
+
+    </div>
+</div>
+<br />
+<br />
+<div class="col-md-12">
+    <table class="table table-bordered ">
+        <tr><td colspan="4" class="text-center "><h3>Операции</h3></td></tr>
+        <tr>
+            <th>Назначение платежа</th>
+            <th>Дата и время операции</th>
+            <th>Сумма денег</th>
+            <th>Номер целевого счета</th>
+        </tr>
+   
+    @foreach (var item in Model.Account.Operations)
+    {
+        <tr>
+        <td>
+            @Html.DisplayFor(model=>item.Name)
+        </td>
+             <td>
+                 @Html.DisplayFor(model => item.Data)
+             </td>
+             <td>
+                 @Html.DisplayFor(mode => item.Money)
+             </td>
+             <td>
+                 @Html.DisplayFor(mode => item.NumberAccount)
+             </td>
+        </tr>
+
+    }
+        <td colspan="4"><div class="btn btn-default ">@Html.ActionLink("Создать платеж", "Pay", "Operations", new { id = Model.Account.Id }, null) </div> </td>
+    </table>
+</div>
+ 
+@using (Html.BeginForm())
+{
+    
+    @Html.ValidationSummary(true)
+
+   
+  
+
+}
