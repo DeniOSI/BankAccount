@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="Model1.Accounts" />
+    <EntitySet Name="Currencies" EntityType="Model1.Currencies" />
+    <EntitySet Name="Operations" EntityType="Model1.Operations" />
+    <EntitySet Name="Roles" EntityType="Model1.Roles" />
+    <EntitySet Name="TypeAccounts" EntityType="Model1.TypeAccounts" />
+    <EntitySet Name="Users" EntityType="Model1.Users" />
+    <EntitySet Name="UserTypes" EntityType="Model1.UserTypes" />
+    <AssociationSet Name="FK_dbo_Accounts_dbo_Currencies_CurrencyId" Association="Model1.FK_dbo_Accounts_dbo_Currencies_CurrencyId">
+      <End Role="Currencies" EntitySet="Currencies" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Accounts_dbo_TypeAccounts_TypeAccountId" Association="Model1.FK_dbo_Accounts_dbo_TypeAccounts_TypeAccountId">
+      <End Role="TypeAccounts" EntitySet="TypeAccounts" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Operations_dbo_Accounts_AccountId" Association="Model1.FK_dbo_Operations_dbo_Accounts_AccountId">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="Operations" EntitySet="Operations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Users_dbo_Accounts_AccountId" Association="Model1.FK_dbo_Users_dbo_Accounts_AccountId">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Users_dbo_Roles_RoleId" Association="Model1.FK_dbo_Users_dbo_Roles_RoleId">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Users_dbo_UserTypes_UserTypeId" Association="Model1.FK_dbo_Users_dbo_UserTypes_UserTypeId">
+      <End Role="UserTypes" EntitySet="UserTypes" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Accounts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Money" Type="Double" Nullable="false" />
+    <Property Name="NumberAccount" Type="Int32" Nullable="false" />
+    <Property Name="TypeAccountId" Type="Int32" Nullable="false" />
+    <Property Name="CurrencyId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Currencies" Relationship="Model1.FK_dbo_Accounts_dbo_Currencies_CurrencyId" FromRole="Accounts" ToRole="Currencies" />
+    <NavigationProperty Name="TypeAccounts" Relationship="Model1.FK_dbo_Accounts_dbo_TypeAccounts_TypeAccountId" FromRole="Accounts" ToRole="TypeAccounts" />
+    <NavigationProperty Name="Operations" Relationship="Model1.FK_dbo_Operations_dbo_Accounts_AccountId" FromRole="Accounts" ToRole="Operations" />
+    <NavigationProperty Name="Users" Relationship="Model1.FK_dbo_Users_dbo_Accounts_AccountId" FromRole="Accounts" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Currencies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Curs" Type="Double" Nullable="false" />
+    <Property Name="Cur" Type="Single" Nullable="false" />
+    <NavigationProperty Name="Accounts" Relationship="Model1.FK_dbo_Accounts_dbo_Currencies_CurrencyId" FromRole="Currencies" ToRole="Accounts" />
+  </EntityType>
+  <EntityType Name="Operations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Money" Type="Double" Nullable="false" />
+    <Property Name="NumberAccount" Type="Int32" Nullable="false" />
+    <Property Name="AccountId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Accounts" Relationship="Model1.FK_dbo_Operations_dbo_Accounts_AccountId" FromRole="Operations" ToRole="Accounts" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="Model1.FK_dbo_Users_dbo_Roles_RoleId" FromRole="Roles" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="TypeAccounts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Accounts" Relationship="Model1.FK_dbo_Accounts_dbo_TypeAccounts_TypeAccountId" FromRole="TypeAccounts" ToRole="Accounts" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Passport" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="INN" Type="Int32" Nullable="false" />
+    <Property Name="Bday" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateRegistration" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UserTypeId" Type="Int32" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="AccountId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Accounts" Relationship="Model1.FK_dbo_Users_dbo_Accounts_AccountId" FromRole="Users" ToRole="Accounts" />
+    <NavigationProperty Name="Roles" Relationship="Model1.FK_dbo_Users_dbo_Roles_RoleId" FromRole="Users" ToRole="Roles" />
+    <NavigationProperty Name="UserTypes" Relationship="Model1.FK_dbo_Users_dbo_UserTypes_UserTypeId" FromRole="Users" ToRole="UserTypes" />
+  </EntityType>
+  <EntityType Name="UserTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="Model1.FK_dbo_Users_dbo_UserTypes_UserTypeId" FromRole="UserTypes" ToRole="Users" />
+  </EntityType>
+  <Association Name="FK_dbo_Accounts_dbo_Currencies_CurrencyId">
+    <End Type="Model1.Currencies" Role="Currencies" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model1.Accounts" Role="Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currencies">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="CurrencyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Accounts_dbo_TypeAccounts_TypeAccountId">
+    <End Type="Model1.TypeAccounts" Role="TypeAccounts" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model1.Accounts" Role="Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeAccounts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="TypeAccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Operations_dbo_Accounts_AccountId">
+    <End Type="Model1.Accounts" Role="Accounts" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model1.Operations" Role="Operations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Operations">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Users_dbo_Accounts_AccountId">
+    <End Type="Model1.Accounts" Role="Accounts" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model1.Users" Role="Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Users_dbo_Roles_RoleId">
+    <End Type="Model1.Roles" Role="Roles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model1.Users" Role="Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Users_dbo_UserTypes_UserTypeId">
+    <End Type="Model1.UserTypes" Role="UserTypes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model1.Users" Role="Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="UserTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

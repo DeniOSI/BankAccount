@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+
 using BankAccount.Models;
 
 namespace BankAccount.Controllers
@@ -20,12 +21,21 @@ namespace BankAccount.Controllers
             int gid;
             if(User.Identity.IsAuthenticated)
             {
+                if(User.Identity.Name == "root")
+                {
+                   return RedirectToAction("AdminList", "Control");
+                }
                 if(UserIdent(User.Identity.Name, mod, out gid))
                 {
                     using (_db = new Models.BankaccountContext())
                     {
-                        var user = _db.Users.Include(u => u.Account).Include(u => u.Role).Include(u => u.UserType).Include(o => o.Account.Operations).Include(c => c.Account.Currency).Where(u => u.Id == mod).FirstOrDefault();
+                        var user = _db.Users.Include(u => u.Account).Include(o => o.Account.Operations).Include(c => c.Account.Currency).Where(u => u.Id == mod).FirstOrDefault();
                         // var operation
+                        foreach (var item in user.Account.Operations)
+                        {
+                            item.Money = Math.Round(item.Money, 2);
+                        }
+                        user.Account.Money = Math.Round(user.Account.Money, 2);
                         return View(user);
                     }
                 }
@@ -33,8 +43,13 @@ namespace BankAccount.Controllers
                 {
                     using (_db = new Models.BankaccountContext())
                     {
-                        var user = _db.Users.Include(u => u.Account).Include(u => u.Role).Include(u => u.UserType).Include(o => o.Account.Operations).Include(c => c.Account.Currency).Where(u => u.Id == gid).FirstOrDefault();
+                        var user = _db.Users.Include(u => u.Account).Include(o => o.Account.Operations).Include(c => c.Account.Currency).Where(u => u.Id == gid).FirstOrDefault();
                         // var operation
+                        foreach (var item in user.Account.Operations)
+                        {
+                            item.Money = Math.Round(item.Money, 2);
+                        }
+                        user.Account.Money = Math.Round(user.Account.Money, 2);
                         return View(user);
                     }
                 }

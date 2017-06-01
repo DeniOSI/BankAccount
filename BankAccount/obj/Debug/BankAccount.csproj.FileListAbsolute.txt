@@ -58,3 +58,7 @@ g:\users7\denos\documents\visual studio 2017\Projects\BankAccount\BankAccount\ob
 g:\users7\denos\documents\visual studio 2017\Projects\BankAccount\BankAccount\obj\Debug\BankAccount.Migrations.InitialCreate.resources
 g:\users7\denos\documents\visual studio 2017\Projects\BankAccount\BankAccount\obj\Debug\BankAccount.csproj.GenerateResource.Cache
 g:\users7\denos\documents\visual studio 2017\Projects\BankAccount\BankAccount\obj\Debug\BankAccount.Migrations.MigratesDB.resources
+g:\users7\denos\documents\visual studio 2017\Projects\BankAccount\BankAccount\bin\ru\EntityFramework.resources.dll
+g:\Users7\DenOS\Documents\Visual Studio 2017\Projects\BankAccount\BankAccount\obj\Debug\BankAccount.Migrations.m2.resources
+g:\Users7\DenOS\Documents\Visual Studio 2017\Projects\BankAccount\BankAccount\obj\Debug\BankAccount.Migrations.m1.resources
+g:\Users7\DenOS\Documents\Visual Studio 2017\Projects\BankAccount\BankAccount\obj\Debug\BankAccount.Migrations.m3.resources

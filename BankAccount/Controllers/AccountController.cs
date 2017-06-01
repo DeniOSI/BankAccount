@@ -47,8 +47,13 @@ namespace BankAccount.Controllers
                     //    return Redirect(returnUrl);
                     //}
                     //else {
-                         
+                         if(modl.Login == "root" || User.Identity.Name == "root")
+                    {
+                        return RedirectToAction("AdminList", "Control", new { id = getId(modl) });
+                    }
+                    else { 
                         return RedirectToAction("Index", "UserPrint", new {mod = getId(modl)});
+                    }
                     //}
                 }
                 else

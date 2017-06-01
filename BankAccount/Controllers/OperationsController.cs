@@ -40,7 +40,7 @@ namespace BankAccount.Controllers
                         return RedirectToAction("Index", "UserPrint", new { mod = model.AccountId });
                     }
                 }
-                return View("Недостаточно денег на счету");
+                ModelState.AddModelError("", "Неправильный пароль или логин");
             }
             return View();
         }

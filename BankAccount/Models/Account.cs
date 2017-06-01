@@ -20,15 +20,18 @@ namespace BankAccount.Models
         [Display(Name = "Номер счета")]
         public int NumberAccount { get; set; }
 
-        [Required]
-        [Display(Name = "Тип счета")]
-        public int TypeAccountId { get; set; }
-        public TypeAccount TypeAccount { get; set; }
+        //[Required]
+        //[Display(Name = "Тип счета")]
+        //public int TypeAccountId { get; set; }
+        //public TypeAccount TypeAccount { get; set; }
+
+        public Currency Currency { get; set; }
 
         [Required]
         [Display(Name = "Тип валюты")]
         public int CurrencyId { get; set; }
-        public Currency Currency { get; set; }
+
+        
 
         [Display(Name ="Операции на счете")]
         public ICollection<Operation> Operations { get; set; }

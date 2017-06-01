@@ -1,0 +1,64 @@
+﻿@model IEnumerable<BankAccount.Models.User>
+
+<div class="text-right">
+    <span class="btn btn-default">
+        @Html.ActionLink("Создать пользователя", "Create", "Create")
+    </span>
+
+    <span class="btn btn-default text-right">
+        @Html.ActionLink("Выйти", "LogOff", "Account")
+    </span>
+</div>
+<table class="table">
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Login)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Login)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+      
+        <td>
+            @Html.ActionLink("Детально", "Edit", "Edit", new { id=item.Id }, null) |
+            
+            @Html.ActionLink("Удалить", "Delete", "Delete", new { id=item.Id }, null)
+        </td>
+    </tr>
+}
+
+</table>

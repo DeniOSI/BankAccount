@@ -5,30 +5,32 @@
 }
 
 <h2>Войти</h2>
-@using (Html.BeginForm())
-{ 
-    <legend>Вход</legend>
-    @Html.ValidationSummary(true)
-<div>
-    @Html.DisplayNameFor(model => model.Login)
-</div>
-<div>
-    @Html.TextBoxFor(model=>model.Login)
-    @Html.ValidationMessageFor(model=>model.Login)
-</div>
-<div>
-        @Html.DisplayNameFor(model => model.Password)
-    </div>
-    @Html.PasswordFor(model=>model.Password)
-    @Html.ValidationMessageFor(model => model.Password)
-    <div>
+<div class="text-center">
+    @using (Html.BeginForm())
+    {
+        <legend>Вход</legend>
+        @Html.ValidationSummary(true)
         <div>
-        @Html.DisplayNameFor(model => model.Remember)    
+            @Html.DisplayNameFor(model => model.Login)
         </div>
-        @Html.CheckBoxFor(model => model.Remember)
+        <div>
+            @Html.TextBoxFor(model => model.Login)
+            @Html.ValidationMessageFor(model => model.Login)
+        </div>
+        <div>
+            @Html.DisplayNameFor(model => model.Password)
+        </div>
+        @Html.PasswordFor(model => model.Password)
+        @Html.ValidationMessageFor(model => model.Password)
+        <div>
+            <div>
+                @Html.DisplayNameFor(model => model.Remember)
+            </div>
+            @Html.CheckBoxFor(model => model.Remember)
         </div>
         <div>
             <input type="submit" name="Login" value="Войти" />
         </div>
     }
+</div>
 

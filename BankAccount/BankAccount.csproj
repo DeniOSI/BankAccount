@@ -53,6 +53,8 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -113,12 +115,18 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountConfigController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ControlController.cs" />
+    <Compile Include="Controllers\CreateController.cs" />
+    <Compile Include="Controllers\DeleteController.cs" />
+    <Compile Include="Controllers\EditController.cs" />
     <Compile Include="Controllers\getData.cs" />
     <Compile Include="Controllers\OperationsController.cs" />
     <Compile Include="Controllers\UserPrintController.cs" />
@@ -133,11 +141,25 @@
     <Compile Include="Migrations\201705231131527_MigratesDB.Designer.cs">
       <DependentUpon>201705231131527_MigratesDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706011727217_m2.cs" />
+    <Compile Include="Migrations\201706011727217_m2.Designer.cs">
+      <DependentUpon>201706011727217_m2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706011733077_m1.cs" />
+    <Compile Include="Migrations\201706011733077_m1.Designer.cs">
+      <DependentUpon>201706011733077_m1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706011949327_m3.cs" />
+    <Compile Include="Migrations\201706011949327_m3.Designer.cs">
+      <DependentUpon>201706011949327_m3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\BankaccountContext.cs" />
     <Compile Include="Models\ContentDB.cs" />
+    <Compile Include="Models\Create.cs" />
     <Compile Include="Models\Currency.cs" />
+    <Compile Include="Models\IUser.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\Role.cs" />
@@ -159,6 +181,11 @@
     <Content Include="Views\UserPrint\OperationPartitial.cshtml" />
     <Content Include="Views\Operations\Pay.cshtml" />
     <Content Include="Views\AccountConfig\Index.cshtml" />
+    <Content Include="Views\Control\AdminList.cshtml" />
+    <Content Include="Views\Edit\Edit.cshtml" />
+    <Content Include="Views\Edit\EditUser.cshtml" />
+    <Content Include="Views\Create\Create.cshtml" />
+    <Content Include="Views\Delete\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -176,6 +203,18 @@
     <EmbeddedResource Include="Migrations\201705231131527_MigratesDB.resx">
       <DependentUpon>201705231131527_MigratesDB.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706011727217_m2.resx">
+      <DependentUpon>201706011727217_m2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706011733077_m1.resx">
+      <DependentUpon>201706011733077_m1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706011949327_m3.resx">
+      <DependentUpon>201706011949327_m3.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

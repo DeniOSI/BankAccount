@@ -1,0 +1,107 @@
+﻿ @model BankAccount.Models.User
+<div class="col-lg-12 text-left">
+    @*<div class="text-success ">Номер/серия паспорта - @Model.Passports.ElementAt(0).Series : @Model.Passports.ElementAt(0).Number</div>
+    <div class="text-success ">Выдан - @Model.Passports.ElementAt(0).Gave</div>*@
+</div>
+<div class="container">
+    <div class="col-md-6 ">
+        <h3>Работник</h3>
+        <hr />
+        @Html.HiddenFor(model => model.Id)
+        <table class="table">
+            <tr>
+                <th>Имя</th>
+                <td>@Model.Name</td>
+            </tr>
+            <tr>
+                <th>Фамилия</th>
+                <td>@Model.Login</td>
+            </tr>
+            <tr>
+                <th>Отчество</th>
+                <td>@Model.Password</td>
+            </tr>
+            <tr>
+                <th>Адрес проживания</th>
+                <td>@Model.Address</td>
+            </tr>
+            <tr>
+                <th>Идентификационный код</th>
+                <td>@Model.INN</td>
+            </tr>
+            <tr>
+                <th>Дата регистрации</th>
+                <td>@Model.DateRegistration.ToString("d")</td>
+            </tr>
+            <tr>
+                <th>Дата рождения</th>
+                <td>@Model.Bday.ToString("d")</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>@Model.Email</td>
+            </tr>
+            <tr>
+                <th>Номер телефона</th>
+                <td>@Model.Phone</td>
+            </tr>
+            <tr>
+                <th colspan="2"><span class="btn btn-default glyphicon glyphicon-edit">@Html.ActionLink("Редактировать", "EditUser", "Edit", new { id = Model.Id }, null)</span></th>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-6 text-right">
+        <h3>Аккаунт</h3>
+        <hr />
+        <table class="table">
+            <tr>
+                <th>Название аккаунта</th>
+                <td>@Model.Account.Name</td>
+            </tr>
+            <tr>
+                <th>Номер</th>
+                <td>@Model.Account.NumberAccount</td>
+            </tr>
+            <tr>
+                <th>Сумма денег</th>
+                <td>@Math.Round(Model.Account.Money, 2)</td>
+            </tr>
+            <tr>
+                <th>Валюта</th>
+                <td>@Model.Account.Currency.Name</td>
+            </tr>
+            
+        </table>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="col-md-12 text-center">
+        <h3>Операции на счету</h3>
+        <hr />
+        <table class="table">
+            <tr>
+                <th>
+                    Название операции
+                </th>
+                <th>
+                    Сумма
+                </th>
+                <th>
+                    Дата
+                </th>
+            </tr>
+                @foreach (var item in Model.Account.Operations)
+                {
+            <tr>
+                <td>@item.Name</td>
+                <td>@Math.Round(item.Money, 2) @Model.Account.Currency.Name</td>
+                <td>@item.Data.ToString("d")</td>
+               
+            </tr>
+
+                }
+        </table>
+   
+</div>

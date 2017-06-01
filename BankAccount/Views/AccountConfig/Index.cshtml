@@ -83,22 +83,21 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Bday, htmlAttributes: new { @class = "control-label col-md-2" })
+           
             <div class="col-md-10">
-                @Html.DisplayFor(model => model.Bday, new { htmlAttributes = new { @class = "form-control" } })
+                <b> Дата рождения </b>   @Html.DisplayFor(model => model.Bday, new { htmlAttributes = new { @class = "form-control" } })
                 <input type="hidden" name="Bday" value="@Model.Bday" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DateRegistration, htmlAttributes: new { @class = "control-label col-md-2" })
+          
             <div class="col-md-10">
-                @Html.DisplayFor(model => model.DateRegistration, new { htmlAttributes = new { @class = "form-control" } })
+                <b>Дата Регистрации </b>   @Html.DisplayFor(model => model.DateRegistration, new { htmlAttributes = new { @class = "form-control" } })
                 <input type="hidden" name="DateRegistration" value="@Model.DateRegistration" />
             </div>
         </div>
-        <input type="hidden" name="UserTypeId" value="@Model.UserTypeId" />
-        <input type="hidden" name="RoleId" value="@Model.RoleId" />
+       
         <input type="hidden" name="AccountId" value="@Model.AccountId" />
 
         @*<div class="form-group">

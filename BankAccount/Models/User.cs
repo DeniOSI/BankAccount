@@ -7,7 +7,7 @@ using System.Web;
 
 namespace BankAccount.Models
 {
-    public class User
+    public class User : IUser
     {
         public int Id { get; set; }
         [Required]
@@ -66,17 +66,8 @@ namespace BankAccount.Models
         [DataType(DataType.Date)]
         public DateTime DateRegistration { get; set; }
 
-        [Required]
-        [Display(Name = "Тип учетной записи")]
-        public int UserTypeId { get; set; }
-        public UserType UserType { get; set; }
 
-        [Required]
-        [Display(Name = "Статус")]
-        public int RoleId { get; set; }
-        public Role Role { get; set; }
-
-        [Required]
+   
         [Display(Name = "Аккаунт")]
         public int? AccountId { get; set; }
         public Account Account { get; set; }

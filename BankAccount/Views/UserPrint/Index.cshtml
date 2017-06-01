@@ -1,4 +1,5 @@
 ﻿@model BankAccount.Models.User
+    
 
 @{
     ViewBag.Title = "Index";
@@ -35,7 +36,7 @@
     </div>
     <div class="col-md-6 text-right">
         <h3> <span class="text-success"> @Html.DisplayFor(model => model.Account.Money) </span> : @Html.DisplayNameFor(model => model.Account.Money) </h3>
-        <h3><span class="text-danger"> @Html.DisplayFor(model => model.Account.Currency.Name) </span> : Валюта </h3>
+        <h3><span class="text-danger">  Валюта  </span> :@Html.DisplayFor(model => model.Account.Currency.Name) </h3>
         
 
 
@@ -63,7 +64,8 @@
                  @Html.DisplayFor(model => item.Data)
              </td>
              <td>
-                 @Html.DisplayFor(mode => item.Money)
+                 @Html.DisplayFor(mode =>item.Money)
+                 
              </td>
              <td>
                  @Html.DisplayFor(mode => item.NumberAccount)
