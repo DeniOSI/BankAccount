@@ -81,15 +81,15 @@ namespace BankAccount.Controllers
                     money = model.Money * _db.Currencys.Where(n => n.Name == "Доллары").Select(c => c.Cur).FirstOrDefault();
                 else if (ac1 == "Доллары" && ac2 == "Гривны")
                     money = model.Money / _db.Currencys.Where(n => n.Name == "Доллары").Select(c => c.Cur).FirstOrDefault();
-                else if (ac1 == "Доллары" && ac2 == "Евро")
-                {
-                    var eu =_db.Currencys.Where(n => n.Name == "Евро").Select(c => c.Cur).FirstOrDefault();
-                    money = (model.Money / _db.Currencys.Where(n => n.Name == "Доллары").Select(c => c.Cur).FirstOrDefault()) * eu;
-                }
                 else if (ac1 == "Евро" && ac2 == "Доллары")
                 {
+                    var eu =_db.Currencys.Where(n => n.Name == "Евро").Select(c => c.Cur).FirstOrDefault();
+                    money = (model.Money * _db.Currencys.Where(n => n.Name == "Доллары").Select(c => c.Cur).FirstOrDefault()) / eu;
+                }
+                else if (ac1 == "Доллары" && ac2 == "Евро")
+                {
                     var dol = _db.Currencys.Where(n => n.Name == "Доллары").Select(c => c.Cur).FirstOrDefault();
-                    money = (model.Money / _db.Currencys.Where(n => n.Name == "Евро").Select(c => c.Cur).FirstOrDefault()) * dol;
+                    money = (model.Money * _db.Currencys.Where(n => n.Name == "Евро").Select(c => c.Cur).FirstOrDefault()) / dol;
                 }
             }
             return money;
