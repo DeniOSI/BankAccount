@@ -47,7 +47,7 @@ namespace BankAccount.Controllers
 
         private void setAccCont(Operation model)
         {
-            double conMany=0;
+            double conMany=model.Money;
             Account getAcc;
             using (_db = new BankaccountContext())
             {
@@ -59,10 +59,12 @@ namespace BankAccount.Controllers
                 }
 
             }
-            using (_db = new BankaccountContext()) { 
+            using (_db = new BankaccountContext()) {
+                if (getAcc != null) { 
                 _db.Entry(getAcc).State = EntityState.Modified;
+             
                 _db.Operations.Add(new Operation { Data = DateTime.Now, Money = conMany, AccountId = getAcc.Id, Name = model.Name, NumberAccount = model.NumberAccount });
-                    _db.SaveChanges();
+                    _db.SaveChanges();   }
             }
 
         }
@@ -79,6 +81,16 @@ namespace BankAccount.Controllers
                     money = model.Money * _db.Currencys.Where(n => n.Name == "Доллары").Select(c => c.Cur).FirstOrDefault();
                 else if (ac1 == "Доллары" && ac2 == "Гривны")
                     money = model.Money / _db.Currencys.Where(n => n.Name == "Доллары").Select(c => c.Cur).FirstOrDefault();
+                else if (ac1 == "Доллары" && ac2 == "Евро")
+                {
+                    var eu =_db.Currencys.Where(n => n.Name == "Евро").Select(c => c.Cur).FirstOrDefault();
+                    money = (model.Money / _db.Currencys.Where(n => n.Name == "Доллары").Select(c => c.Cur).FirstOrDefault()) * eu;
+                }
+                else if (ac1 == "Евро" && ac2 == "Доллары")
+                {
+                    var dol = _db.Currencys.Where(n => n.Name == "Доллары").Select(c => c.Cur).FirstOrDefault();
+                    money = (model.Money / _db.Currencys.Where(n => n.Name == "Евро").Select(c => c.Cur).FirstOrDefault()) * dol;
+                }
             }
             return money;
         }
