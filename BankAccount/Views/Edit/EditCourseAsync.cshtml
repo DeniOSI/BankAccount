@@ -1,0 +1,43 @@
+﻿@model IEnumerable<BankAccount.Models.Currency>
+
+
+<table class="table">
+    <tr>
+        <th>
+           Название
+        </th>
+        <th>
+           Курс поотношению к гривне
+        </th>
+        <th></th>
+    </tr>
+   
+    @foreach (var item in Model)
+    {
+        <form action="/Edit/EditCourseAsync" method="post">
+            <tr>
+
+                <td>
+
+                  
+                    <input type="hidden" name=Id value="@item.Id" />
+                    <b>@item.Name</b>
+                    <input type="hidden" name=Name value="@item.Name" />
+                  
+                </td>
+                <td>
+                    <input type="text" name=Cur value="@item.Cur" />
+                  
+                </td>
+                <td>
+                    <input type="submit" value="Сохранить" />
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                </td>
+
+
+            </tr>
+        </form>
+    }
+    
+</table>
+@Html.ActionLink( "Назад", "EditCourseAsync", "Edit")

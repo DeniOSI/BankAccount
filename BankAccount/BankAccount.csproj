@@ -186,6 +186,7 @@
     <Content Include="Views\Edit\EditUser.cshtml" />
     <Content Include="Views\Create\Create.cshtml" />
     <Content Include="Views\Delete\Delete.cshtml" />
+    <Content Include="Views\Edit\EditCourseAsync.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

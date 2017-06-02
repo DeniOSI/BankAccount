@@ -49,5 +49,27 @@ namespace BankAccount.Controllers
             ModelState.AddModelError("", "Модель не вадидна");
             return View();
         }
+
+        [HttpGet]
+        public async Task<ActionResult> EditCourseAsync()
+        {
+            ICollection<Currency> currency;
+            using (BankaccountContext db = new BankaccountContext())
+            {
+                currency = await db.Currencys.ToListAsync();
+            }
+            return View(currency);
+        }
+        [HttpPost]
+        public async Task<ActionResult> EditCourseAsync(Currency currency)
+        {
+            using (BankaccountContext db = new BankaccountContext())
+            {
+                db.Entry(currency).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("EditCourseAsync", "Edit");
+            }
+        //    return View(currency);
+        }
     }
 }
